@@ -1,0 +1,50 @@
+#header {
+	display: none !important;
+}
+
+#navigation {
+	display: none !important;
+}
+
+
+body {
+	border: none !important;
+}
+
+.clear {
+	display: none !important;
+}
+
+.breadcrumbs {
+	display: none !important;
+}
+
+.leftnav {
+	display: none !important;
+}
+
+#sidebar {
+	display: none !important;
+}
+
+.footer {
+	display: none !important;
+}
+
+.copyright {
+	display: none !important;
+}
+
+.partners {
+	display: none !important;
+}
+
+#main {
+	margin: 0 !important;
+	width: 100% !important;
+}
+
+.container_16 {
+	width: 400px !important;
+	margin: 0 !important;
+}

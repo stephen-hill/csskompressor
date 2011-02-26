@@ -22,18 +22,18 @@ namespace CSS_Kompressor
 		public static ConsoleKeyInfo Key { get; set; }
 		public static Dictionary<string, string> Files { get; set; }
 		public static Dictionary<string, DateTime> Modified { get; set; }
-		public static FileSystemWatcher Watch { get; set; }
 		
 		public static void Main(string[] args)
 		{
-			WatchFiles();
-		}
-		
-		public static void WatchFiles() {
 			// Set variables
 			CurrentDirectory = System.Environment.CurrentDirectory;
-			Filter = "*.css";
-			Output = "c.css";
+			if (args.Length < 1) {
+				Filter = "*.css";
+				Output = "c.css";
+			} else {
+				Filter = args[0];
+				Output = args[1];
+			}
 			Key = new ConsoleKeyInfo();
 			Files = new Dictionary<string, string>();
 			Modified = new Dictionary<string, DateTime>();
@@ -41,9 +41,6 @@ namespace CSS_Kompressor
 			// Get List of Files
 			var Dir = new DirectoryInfo(CurrentDirectory);
 			var DirFiles = Dir.GetFiles(Filter);
-			Array.Sort(DirFiles, delegate(FileInfo f1, FileInfo f2) {
-				return f1.Name.CompareTo(f2.Name);
-			});
 			foreach (var File in DirFiles) {
 				if (File.Name != Output) {
 					Files.Add(File.Name, Kompress(File.FullName));
@@ -54,18 +51,16 @@ namespace CSS_Kompressor
 			SaveToFile();
 			
 			// Set File System Watcher
-			Watch = new FileSystemWatcher();
+			var Watch = new FileSystemWatcher();
 			Watch.Path = CurrentDirectory;
 			Watch.NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Size;
 			Watch.Filter = Filter;
-			Watch.InternalBufferSize = 32768;
 			
 			// Set Event Listener
 			Watch.Changed += new FileSystemEventHandler(OnChange);
             Watch.Created += new FileSystemEventHandler(OnCreate);
             Watch.Deleted += new FileSystemEventHandler(OnDelete);
             Watch.Renamed += new RenamedEventHandler(OnRename);
-            Watch.Error += new ErrorEventHandler(WatcherError);
             
             // Start Event Listener
             Watch.EnableRaisingEvents = true;
@@ -74,31 +69,6 @@ namespace CSS_Kompressor
             	Thread.Sleep(250);
             	Key = Console.ReadKey(true);
             }
-		}
-		
-		private static void WatcherError(object source, ErrorEventArgs e) {
-			Exception watchException = e.GetException();
-			Console.WriteLine("A FileSystemWatcher error has occurred: "
-			             + watchException.Message);
-			// We need to create new version of the object because the
-			// old one is now corrupted
-			Watch = new FileSystemWatcher();
-			while (!Watch.EnableRaisingEvents)
-			{
-			try
-			{
-			   // This will throw an error at the
-			   // watcher.NotifyFilter line if it can't get the path.
-			   WatchFiles();
-			   Console.WriteLine("I'm Back!!");
-			}
-			catch
-			{
-			   // Sleep for a bit; otherwise, it takes a bit of
-			   // processor time
-			   System.Threading.Thread.Sleep(5000);
-			}
-			}
 		}
 		
 		private static void OnChange(object source, FileSystemEventArgs e) {
@@ -164,16 +134,7 @@ namespace CSS_Kompressor
 			Reader.Close();
 			Reader.Dispose();
 			
-            // Convert Standard to Browser Specific CSS Properties
-            var matches = Regex.Matches(CSS, @"border-radius:([\d\w\s]+)[;}]", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-            foreach (Match match in matches) {
-            	//CSS = CSS.Insert(match.Index, "-moz-border-radius:" + match.Captures[0] + ";");
-            	foreach (Capture element in match.Captures) {
-            		Console.WriteLine(element.Value);
-            	}
-            }
-			
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 10; i++) {
 				// Remove New Lines and Tabs
 				CSS = CSS.Replace("\n", String.Empty);
 				CSS = CSS.Replace("\r", String.Empty);
