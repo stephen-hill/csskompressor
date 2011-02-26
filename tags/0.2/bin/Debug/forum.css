@@ -1,0 +1,110 @@
+#forum {
+	font-size: 1.2em;
+}
+
+#forum .usermenu {
+	font-size: 0.9em;
+}
+
+#forum #navigation {
+	font-size: 0.9em;
+}
+
+/****** Forum List ******/
+
+dl.header {
+	background: #5d9732;
+	color: #fff;
+	padding: 3px;
+}
+
+dl.header a {
+	color: #fff;
+}
+
+dl.body {
+	border-bottom: #ccc solid 1px;
+	padding: 3px;
+}
+
+dl.body.last_row {
+	margin-bottom: 10px;
+}
+
+/****** Posting ******/
+
+#format-buttons input {
+	display: inline !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: auto;
+}
+
+#format-buttons select {
+	display: inline !important;
+	width: auto;
+}
+
+#submit-buttons * {
+	display: inline !important;
+}
+
+/****** Post Row ******/
+
+.postrow {
+	margin-bottom: 10px;
+}
+
+.postrow h2 {
+	background: #5d9732;
+	color: #fff;
+	font-size: 1em;
+	margin: 0 !important;
+	padding: 3px;
+}
+
+.postrow h2 a {
+	color: #fff;
+}
+
+.postrow.first {
+	margin-top: 10px !important;
+}
+
+.postrow.last {
+	margin-bottom: 10px !important;
+}
+
+.postrow p {
+	font-size: 1.1em;
+	margin: 3px 0;
+}
+
+.post-icons a.button {
+	display: block;
+	font-size: 0.9em;
+	margin: 2px 0;
+	width: 50%;
+}
+
+p.post-icons {
+	font-size: 0.8em;
+	margin-top: 1em;	
+}
+
+h2.post_title {
+	margin-top: 0.5em;
+}
+
+/****** Post Attachments ******/
+
+h3.attachments {
+	border-top: #c8df8e solid 1px;
+	font-size: 1.2em;
+	margin-top: 1em;
+	padding-top: 0.5em;
+}
+
+ul.attachments {
+	margin-left: 1em;
+}

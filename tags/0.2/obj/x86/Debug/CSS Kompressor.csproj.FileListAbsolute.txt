@@ -1,0 +1,5 @@
+C:\Users\shill2\Desktop\My Dropbox\Sharp Develop\CSS Kompressor\bin\Debug\CSS Kompressor.exe
+C:\Users\shill2\Desktop\My Dropbox\Sharp Develop\CSS Kompressor\bin\Debug\CSS Kompressor.pdb
+C:\Users\shill2\Desktop\My Dropbox\Sharp Develop\CSS Kompressor\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\shill2\Desktop\My Dropbox\Sharp Develop\CSS Kompressor\obj\x86\Debug\CSS Kompressor.exe
+C:\Users\shill2\Desktop\My Dropbox\Sharp Develop\CSS Kompressor\obj\x86\Debug\CSS Kompressor.pdb
