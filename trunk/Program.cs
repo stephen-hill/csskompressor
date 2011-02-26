@@ -164,7 +164,16 @@ namespace CSS_Kompressor
 			Reader.Close();
 			Reader.Dispose();
 			
-			for (int i = 0; i < 10; i++) {
+            // Convert Standard to Browser Specific CSS Properties
+            var matches = Regex.Matches(CSS, @"border-radius:([\d\w\s]+)[;}]", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            foreach (Match match in matches) {
+            	//CSS = CSS.Insert(match.Index, "-moz-border-radius:" + match.Captures[0] + ";");
+            	foreach (Capture element in match.Captures) {
+            		Console.WriteLine(element.Value);
+            	}
+            }
+			
+			for (int i = 0; i < 2; i++) {
 				// Remove New Lines and Tabs
 				CSS = CSS.Replace("\n", String.Empty);
 				CSS = CSS.Replace("\r", String.Empty);
